@@ -1,0 +1,16 @@
+import React from 'react';
+import Header from './Header';
+import Body from './Body';
+import { BodyContainer } from './style';
+import ContainerLayout from './Wrapper';
+
+export default () => {
+  return (
+    <ContainerLayout>
+      <Header />
+      <BodyContainer>
+        <Body />
+      </BodyContainer>
+    </ContainerLayout>
+  );
+};

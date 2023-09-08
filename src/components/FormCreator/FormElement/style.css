@@ -1,0 +1,39 @@
+.inp {
+  margin: 5px;
+  padding: 5px;
+  /* display: block; */
+  width: 90%;
+  background-color: none;
+  border: 1px solid var(--custom-primary);
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--custom-primary);
+}
+.sel {
+  margin: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 5px;
+  width: 90%;
+  color: var(--custom-primary);
+  background-color: none;
+  border: 1px solid var(--custom-primary);
+}
+.label {
+  color: rgb(101, 101, 101);
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  /* align-items: center; */
+  margin-top: 10px;
+}
+.num {
+  display: inline-block;
+  color: gray;
+  font-size: 15px;
+  /* margin: 0 7px; */
+  margin-top: 5px;
+  margin-left: 12px;
+  font-weight: bold;
+}

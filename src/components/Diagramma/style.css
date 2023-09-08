@@ -1,0 +1,52 @@
+.dg-box {
+  width: 90%;
+  display: flex;
+}
+
+.nums {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  /* margin-right: 3%; */
+  align-content: space-between;
+  margin-left: -5%;
+  margin-top: 15px;
+}
+.num {
+  width: 7.5%;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 5px;
+  color: #6a6a6a;
+}
+.box-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 20px; */
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+}
+.text-box {
+  /* margin-top: 5px; */
+  width: 230px;
+  padding-right: 30px;
+  display: inline-block;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 42px;
+  text-align: right;
+  border-right: 1px solid #e0e0e0;
+  color: #434343;
+}
+.line {
+  width: 90%;
+  height: 0px;
+  border: 1px solid #e0e0e0;
+}
