@@ -1,80 +1,108 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SubElements = styled.div`
   transition: max-height 0.3s;
-  max-height: ${({ expand }) => (expand ? "30em" : 0)};
-  overflow: auto auto;
+  max-height: ${({ expand }) => (expand ? '20em' : 0)};
+  overflow: hidden;
 `;
 
 export const SubElement = styled.div`
-  /* height: 40px; */
-  padding: 5px 0;
+  height: 40px;
   display: flex;
   align-items: center;
   padding-left: 51px;
   cursor: pointer;
 `;
 export const Wrapper = styled.div`
-  padding: 3px 5px 0 5px;
-  display: flex;
-  justify-content: space-between;
+  border: 0px;
+  border-bottom: 1px;
+  border-color: #78748670;
+  border-style: inset;
 `;
 
 export const Container = styled.div`
-  padding: 0 var(--sidebar-padding-x);
+  padding: 17px var(--sidebar-padding-x);
   display: flex;
-  border-radius: 10px;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
   width: 100%;
-  height: 52px;
+  height: 80px;
   background: ${({ active, hovered }) =>
-    active || hovered ? "var(--sidebar-item-active)" : ""};
-  position: relative;
-
-  & .sidebar__list__badge {
-    position: absolute;
-    top: 15px;
-    right: 10px;
-  }
+    active || hovered ? 'var(--sidebar-item-active)' : ''};
 `;
 Container.Left = styled.div`
   display: flex;
-`;
-
-export const CustomBadge = styled.div`
-  display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 3px 15px;
-
-  /* min-height: 40px; */
-  box-sizing: border-box;
-  border-radius: 10px;
-  background-color: ${(props) => (props.color ? props.color : "#000")};
-  color: white;
-  font-weight: 600;
-  font-size: 14px;
+  gap: 15px;
 `;
 
 export const Title = styled.span`
-  font-size: 13px;
-  color: #282828;
-  font-weight: 550;
-  max-width: 170px;
-
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 19px;
+  color: #787486;
   color: ${({ active, hovered }) =>
-    active || hovered ? "var(--sidebar-active-title)" : ""};
-  opacity: ${({ collapsed }) => (collapsed ? "0" : "1")};
+    active || hovered ? 'var(--sidebar-active-title)' : ''};
+  opacity: ${({ collapsed }) => (collapsed ? '0' : '1')};
   display: inline-block;
   transition: 0.1s;
 `;
 
 export const IconContainer = styled.div`
   color: ${({ active, hovered }) =>
-    active || hovered ? "var(--sidebar-active-title)" : "#a8a8a8"};
+    active || hovered ? 'var(--sidebar-active-title)' : '#a8a8a8'};
   display: flex;
   align-items: center;
-  min-width: 25px;
+  min-width: 40px;
+`;
+
+export const TitleItem = styled.div`
+  & p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #787486;
+  }
+`;
+
+Container.Right = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 5px;
+  & .rightTime {
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Inter';
+    font-style: normal;
+    color: #787486;
+  }
+  & .rightSection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    & p {
+      display: flex;
+      justify-content: center;
+      margin: 0px;
+    }
+  }
+`;
+
+Container.Right.ItemNotification = styled.div`
+  background-color: #1f98f2;
+  padding: 3px 5.5px;
+  border-radius: 50%;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 `;

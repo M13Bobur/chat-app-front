@@ -1,14 +1,14 @@
-import React from "react";
-import { Header, TitleContainer } from "./style";
-import Logo from "../../Logo";
+import React from 'react';
+import { Header, TitleContainer } from './style';
+import Logo from '../../Logo';
 
-const SidebarHeader = ({ collapsed }) => {
+const SidebarHeader = () => {
   return (
     <Header>
       <TitleContainer>
         <Logo
           onClick={() => {
-            console.log("Click logo");
+            console.log('Click logo');
           }}
         />
       </TitleContainer>

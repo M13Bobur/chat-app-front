@@ -1,5 +1,5 @@
-import { notification } from "antd";
-import { useCallback } from "react";
+import { notification } from 'antd';
+import { useCallback } from 'react';
 
 export const useShowAlert = () => {
   const success = useCallback((message, duration, place) => {
@@ -9,6 +9,7 @@ export const useShowAlert = () => {
       placement: place,
     });
   }, []);
+
   const error = useCallback((message, duration, place) => {
     notification.error({
       duration: duration,
