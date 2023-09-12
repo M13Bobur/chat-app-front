@@ -1,22 +1,22 @@
 import styled, { css } from 'styled-components';
 
 const tabletDesktop = css`
-  border: 1px solid rgba(131, 131, 131, 0.14);
+  border-right: 1px solid #dbdbdb;
   background: var(--sidebar-background);
-  width: var(--sidebar-width);
-  transition: 0.2s width;
+  transition: 0.4s width;
   grid-area: sidebar;
   position: relative;
   display: grid;
-  z-index: 11;
   grid-template-areas:
     'header'
     'body';
-  grid-template-rows: 76px calc(100vh - 76px);
+  grid-template-rows: 0px calc(100vh - 46px);
   grid-template-columns: 1fr;
   overflow: hidden;
 `;
 
 export const DesktopSidebar = styled.div`
   ${tabletDesktop}
+  width: ${({ open }) =>
+    open ? 'var(--sidebar-close-width)' : 'var(--sidebar-width)'};
 `;

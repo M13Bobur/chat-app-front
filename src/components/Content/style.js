@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100vh;
@@ -14,6 +14,8 @@ export const Content = styled.div`
   position: relative;
   overflow-x: auto;
   overflow-y: auto;
-  background-color: ${({ bg }) => bg && bg};
-  padding: 10px 60px;
+  /* height: calc(100vh - var(--navbar-height)); */
+  height: 100vh;
+  background-color: #fff;
+  padding: 0px 30px;
 `;

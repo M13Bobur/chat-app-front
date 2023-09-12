@@ -1,48 +1,27 @@
-import React, { useState } from "react";
-import { Badge, Radio } from "antd";
-import { FiChevronRight, FiChevronDown } from "react-icons/fi";
-import { useNavigate, useLocation } from "react-router-dom";
-import {
-  Container,
-  Title,
-  Wrapper,
-  IconContainer,
-  SubElements,
-  SubElement,
-  CustomBadge,
-} from "./style";
-import { useDispatch, useSelector } from "react-redux";
-import { setActiveItem } from "../../../redux/modules/application/actions";
-import { colors } from "../../../constants/colors";
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Container, Title, Wrapper, IconContainer, TitleItem } from './style';
+import { useDispatch } from 'react-redux';
+import { setSearch } from '../../../redux/modules/sidebar/actions';
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { IoCheckmarkDoneOutline, IoCheckmarkOutline } from 'react-icons/io5';
+import { AiTwotonePushpin } from 'react-icons/ai';
 
-const Item = ({ title, path, icon: Icon, elements = [], count, status }) => {
-  const dispatch = useDispatch();
+const Item = ({ open, title, path, elements = [] }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { data } = useSelector((state) => state.worksReducer);
-  const { activeItem } = useSelector((state) => state.appReducer);
-  const [active, setActive] = useState(activeItem);
   const [hovered, setHovered] = useState(false);
-
   const isActive = (checkPath) => location.pathname === checkPath;
+  const dispatch = useDispatch();
 
   const handleNavigate = (path) => {
-    if (location.pathname === "/") {
+    dispatch(setSearch(''));
+    if (location.pathname === '/') {
       navigate(path, { replace: true });
     } else {
       navigate(path, { replace: true });
     }
-  };
-
-  const handleItem = (id) => {
-    dispatch(setActiveItem(id));
-  };
-
-  const checkSubItems = () => {
-    if (elements.length > 0 && location.pathname === "/") {
-      return <FiChevronDown size={18} />;
-    }
-    if (elements.length > 0) return <FiChevronRight size={18} />;
   };
 
   return (
@@ -50,48 +29,64 @@ const Item = ({ title, path, icon: Icon, elements = [], count, status }) => {
       <Container
         onMouseOver={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        active={isActive(path)}
+        active={
+          elements.length &&
+          location.pathname.split('/').includes(path.slice(1))
+            ? isActive(location.pathname)
+            : isActive(path)
+        }
         hovered={hovered}
         onClick={() => handleNavigate(path)}
+        title={title}
       >
-        {/* <Badge
-          size="default"
-          count={data[count]}
-          className="sidebar__list__badge"
-        /> */}
-
         <Container.Left>
-          <IconContainer active={isActive(path)} hovered={hovered}>
-            <Icon size={18} />
+          <IconContainer
+            active={
+              elements.length &&
+              location.pathname.split('/').includes(path.slice(1))
+                ? isActive(location.pathname)
+                : isActive(path)
+            }
+            hovered={hovered}
+          >
+            <Avatar
+              // style={{ backgroundColor: '#87d068' }}
+              icon={<UserOutlined />}
+              size={45}
+            />
           </IconContainer>
-          <Title hovered={hovered} active={isActive(path)}>
-            {title}{" "}
-          </Title>
+          <TitleItem>
+            {!open && (
+              <Title hovered={hovered} active={isActive(path)}>
+                {title}
+              </Title>
+            )}
+            {!open && (
+              <p>
+                {<IoCheckmarkOutline size={15} /> ?? (
+                  <IoCheckmarkDoneOutline size={15} />
+                )}{' '}
+                {'Hello World'.length >= 27
+                  ? 'HelloWorld'.slice(0, 27) + '...'
+                  : 'HelloWorld'}
+              </p>
+            )}
+          </TitleItem>
         </Container.Left>
-        {checkSubItems()}
-        {count && (
-          <CustomBadge color={colors[status]}>{data[count]}</CustomBadge>
+        {!open && (
+          <Container.Right>
+            <div className='rightTime'>10:00</div>
+            <div className='rightSection'>
+              <Container.Right.ItemNotification>
+                10
+              </Container.Right.ItemNotification>
+              <p>
+                <AiTwotonePushpin color='#787486' />
+              </p>
+            </div>
+          </Container.Right>
         )}
       </Container>
-
-      <SubElements expand={isActive(path)}>
-        {elements.map(
-          (child, index) =>
-            !child.hidden && (
-              <SubElement
-                key={`${index + 1}`}
-                active={child.id === active}
-                onClick={() => {
-                  handleItem(child?.id);
-                  setActive(child.id);
-                }}
-              >
-                <Radio checked={child.id === active} />
-                <Title active={child.id === active}>{child.title}</Title>
-              </SubElement>
-            )
-        )}
-      </SubElements>
     </Wrapper>
   );
 };

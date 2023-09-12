@@ -1,14 +1,10 @@
-import types from "../../../constants/action-types";
+import types from '../../../constants/action-types';
 
 const defaultState = {
-  token: localStorage.getItem("access_token"),
-  role: localStorage.getItem("role"), // supervisor, admin, governor, secretary
-  userId: localStorage.getItem("user_id"),
-  username: localStorage.getItem("username"),
-  fullname: localStorage.getItem("fullname"),
-  groupId: localStorage.getItem("groupId"),
-  regionId: localStorage.getItem("regionId"),
-  provinceId: localStorage.getItem("provinceId"),
+  token: localStorage.getItem('access_token'),
+  role: localStorage.getItem('role'), // admin , organization
+  username: localStorage.getItem('username'),
+  // fullname: localStorage.getItem('role'),
 };
 
 const map = {
@@ -36,9 +32,9 @@ const map = {
     ...state,
     provinceId: payload,
   }),
-  [types.SET_group_ID]: (state, { payload }) => ({
+  [types.SET_SECTOR_ID]: (state, { payload }) => ({
     ...state,
-    groupId: payload,
+    sectorId: payload,
   }),
   [types.CLEAR_TOKEN]: (state) => ({
     ...state,

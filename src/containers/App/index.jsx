@@ -1,21 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useRoutes } from "react-router-dom";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useRoutes } from 'react-router-dom';
 import {
   adminRoutes,
   publicRoutes,
-  supervisorRoutes,
-} from "../../routes/routes";
-
-const routes = {
-  moderator: supervisorRoutes,
-
-  admin: adminRoutes,
-};
+  // organizationRoutes,
+  // zavhozRoutes,
+} from '../../routes/routes';
 
 const App = () => {
-  const { role, token } = useSelector((state) => state.authReducer);
-  const content = useRoutes(token ? routes[role] : publicRoutes);
+  const routes = {
+    admin: adminRoutes,
+    // organization: organizationRoutes,
+    // manager: zavhozRoutes,
+  };
+  const { token, role } = useSelector((state) => state.authReducer);
+  // !token ? routes[role] : publicRoutes
+  const content = useRoutes(adminRoutes);
   return <>{content}</>;
 };
 

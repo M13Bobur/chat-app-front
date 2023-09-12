@@ -24,8 +24,8 @@ export const setProvinceId = (payload) => ({
   type: types.SET_PROVINCE_ID,
   payload,
 });
-export const setgroupId = (payload) => ({
-  type: types.SET_group_ID,
+export const setSectorId = (payload) => ({
+  type: types.SET_SECTOR_ID,
   payload,
 });
 export const clearToken = () => {
