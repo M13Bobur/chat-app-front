@@ -4,19 +4,11 @@ import { useRoutes } from 'react-router-dom';
 import {
   adminRoutes,
   publicRoutes,
-  // organizationRoutes,
-  // zavhozRoutes,
 } from '../../routes/routes';
 
 const App = () => {
-  const routes = {
-    admin: adminRoutes,
-    // organization: organizationRoutes,
-    // manager: zavhozRoutes,
-  };
-  const { token, role } = useSelector((state) => state.authReducer);
-  // !token ? routes[role] : publicRoutes
-  const content = useRoutes(adminRoutes);
+  const { token } = useSelector((state) => state.authReducer);
+  const content = useRoutes(token ? adminRoutes : publicRoutes);
   return <>{content}</>;
 };
 

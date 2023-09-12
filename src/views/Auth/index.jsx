@@ -20,12 +20,12 @@ export default () => {
   const dispatch = useDispatch();
 
   const formHandler = (e) => {
+    console.log(login, password)
     setLoading(true);
     e.preventDefault();
-    let numberPattern = /\d+/g;
 
     const data = {
-      login: login.match(numberPattern).join(''),
+      username: login,
       password,
     };
 
@@ -35,25 +35,14 @@ export default () => {
         setLoading(false);
         const decode = jwtDecode(res.data?.token);
         localStorage.setItem('access_token', res.data?.token);
-        localStorage.setItem('role', decode?.role);
-        localStorage.setItem('org_id', decode?._id);
         localStorage.setItem(
-          'username',
-          decode?.title?.fullname
-            ? decode?.title?.fullname
-            : decode?.title?.lastName
-            ? decode?.title?.lastName + ' ' + decode?.title?.firstName
-            : decode?.title
+          'firstname',
+          decode?.firstname
         );
         dispatch(setToken(res.data?.token));
-        dispatch(setRole(decode?.role));
         dispatch(
           setUsername(
-            decode?.title?.fullname
-              ? decode?.title?.fullname
-              : decode?.title?.lastName
-              ? decode?.title?.lastName + ' ' + decode?.title?.firstName
-              : decode?.title
+            decode?.firstname
           )
         );
       })
@@ -78,7 +67,7 @@ export default () => {
         <div className='login_content'>
           <h2 style={{ marginBottom: '5px' }}>
             <span style={{ verticalAlign: 'middle' }} className='sektor_text'>
-              Тизимга кириш
+              Kirish oynasi
             </span>
           </h2>
           <form
@@ -94,32 +83,21 @@ export default () => {
             }}
           >
             <div className='first-input'>
-              <label htmlFor='phone' className='label-text'>
-                Телефон рақам
+              <label htmlFor='password' className='label-text'>
+                Login
               </label>
-              <div>
-                <InputMask
-                  maskPlaceholder={null}
+              <div className='surroundedInput'>
+                <Input
                   onChange={(e) => setLogin(e.target.value)}
-                  mask='(99)-999-99-99'
-                  value={login}
-                  maskChar=''
-                  alwaysShowMask={false}
-                >
-                  {() => (
-                    <Input
-                      required
-                      id='phone'
-                      className='phone-input'
-                      addonBefore='+998'
-                    />
-                  )}
-                </InputMask>
+                  id='password'
+                  placeholder=''
+                  className='password-input'
+                />
               </div>
             </div>
             <div className='second-input'>
               <label htmlFor='password' className='label-text'>
-                Парол
+                Parol
               </label>
               <div className='surroundedInput'>
                 <Input.Password
@@ -130,16 +108,12 @@ export default () => {
                 />
               </div>
             </div>
-            <div className='switch-login'>
-              <Switch size='small' defaultChecked={false} />
-              <span className='label-text'>Ишончли қурилма</span>
-            </div>
             <button
               type='submit'
               disabled={!(login.length && password.length) ? true : false}
               className='enter_btn'
             >
-              Кириш
+              Kirish
             </button>
           </form>
         </div>
